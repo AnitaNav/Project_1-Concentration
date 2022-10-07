@@ -11,7 +11,7 @@ Functions : render - board, message
                    Check, winning
 
  /*----- constants -----*/
-player
+
 
   /*----- state variables -----*/
 
