@@ -1,6 +1,4 @@
 * {
-  padding: 0;
-  margin: 0;
   box-sizing: border-box;
 }
 
@@ -10,9 +8,24 @@ body {
   background-image: url("https://i.pinimg.com/originals/45/cd/6c/45cd6c97239eaa2e734bbafbd8df6b66.jpg ");
 }
 
+header {
+  font-size: 8vmin;
+  font-family: fantasy;
+  font-style: oblique 40deg;
+  font-weight: 700;
+  letter-spacing: 0.5vmin;
+  color: firebrick;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  position: absolute;
+  right: 40%;
+  justify-content: center;
+}
+
 .memory-game {
-  width: 640px;
-  height: 640px;
+  width: 500px;
+  height: 500px;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -54,3 +67,16 @@ body {
   transform: rotateY(180deg);
 }
 
+button {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  justify-content: center;
+  border-radius: 20%;
+  height: 4%;
+  width: 5%;
+  background-color: gold;
+  text-align: center;
+}
