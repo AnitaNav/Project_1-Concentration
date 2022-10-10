@@ -22,7 +22,7 @@ const playButton = document.querySelector('button');
 
 /*----- event listeners -----*/
 document.querySelector('main').addEventListener('click', handleClick);
-
+playButton.addEventListener('click', initialize);
 
 /*----- functions -----*/
 initialize();

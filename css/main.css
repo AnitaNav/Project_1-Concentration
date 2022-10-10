@@ -42,8 +42,11 @@ header {
   top : 8%;
   right: 40%;
   justify-content: center;
+  background-image: url("https://c.tenor.com/mSBwQxmbtoIAAAAC/fire.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-  
 button {
   display: flex;
   flex-direction: column;
@@ -56,4 +59,10 @@ button {
   width: 5%;
   background-color: gold;
   text-align: center;
+  font-family: fantasy;
+  font-style: oblique 40deg;
+  color: firebrick;
+  font-size: 125%;
 }
+
+  
