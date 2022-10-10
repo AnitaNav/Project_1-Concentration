@@ -17,7 +17,7 @@ main {
   display: grid;
   grid-template-columns: repeat(4, 15vmin);
   grid-template-rows: repeat(3, 15vmin);
-  gap: 2vmin;
+  gap: 5vmin;
   margin-right: 5px;
   margin-top:15px;
 }

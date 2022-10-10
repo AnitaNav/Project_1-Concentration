@@ -12,6 +12,7 @@ const CARD_BACK = 'https://images.squarespace-cdn.com/content/v1/5bbe8cab7eb88c0
   /*----- state variables -----*/
 let cardS; // Array of 12 cards
 let firstCoice; // First card clicked
+let ignore;
 //let maxGuess= 8;
 
   /*----- cached elements  -----*/
@@ -19,7 +20,7 @@ let firstCoice; // First card clicked
 // const playButton = document.querySelector('button');
 
   /*----- event listeners -----*/
-  // document.getElementById('memory-game').addEventListener('click', handleMove);
+  document.querySelector('main').addEventListener('click', handleClick);
   //playButton.addEventListener('click', initialize);
 
   /*----- functions -----*/
@@ -34,14 +35,16 @@ let firstCoice; // First card clicked
 //if player runs out of chances -> game over
   function initialize(){
     cards = shuffle();
-    firstCoice = null;
+    firstChoice = null;
+    ignore = false;
     render();
 }
 
 function render() {
   cards.forEach(function(card, index) {
     const imgEl = document.getElementById(index);
-    imgEl.src = card.img;
+    const src = (card.matched || card === firstChoice) ? card.img : CARD_BACK;
+    imgEl.src = src;
 });
 }
 
@@ -51,7 +54,7 @@ let tempCards = [];
 let cards = []; // Shuffled cards array
 
 for (let card of CHAR_LOOKUP) {
-  tempCards.push(card, card);
+  tempCards.push({...card}, {...card});
 }
 
 //console.log(tempCards);
@@ -66,3 +69,21 @@ while (tempCards.length>0) {
 
 }
 
+// Placing gaurds and update state then call render
+function handleClick(event) {
+  const cardIndex = parseInt(event.target.id); // converting the string id to number
+if (isNaN(cardIndex) || ignore) return; // Gaurd
+const card = cards[cardIndex];
+if(firstChoice){
+if(firstChoice.img === card.img) {
+  // correct match
+  firstChoice.matched = card.matched = true;
+  
+  }
+} 
+else {
+  firstChoice = card;
+
+}
+render();
+}
