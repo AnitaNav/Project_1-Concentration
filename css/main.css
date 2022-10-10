@@ -16,12 +16,15 @@ body {
 main {
   display: grid;
   grid-template-columns: repeat(4, 15vmin);
-  grid-template-rows: repeat(4, 15vmin);
+  grid-template-rows: repeat(3, 15vmin);
   gap: 2vmin;
+  margin-right: 5px;
+  margin-top:15px;
 }
 
 img {
-  width: 100%;
+  width: 150px;
+  height: 200px;
   border-radius: 3vmin;
 }
 
@@ -36,10 +39,10 @@ header {
   text-align: center;
   flex-direction: column;
   position: absolute;
-  top : 0%;
+  top : 8%;
   right: 40%;
   justify-content: center;
-}
+
   
 button {
   display: flex;

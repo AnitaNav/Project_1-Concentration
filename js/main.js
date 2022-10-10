@@ -34,12 +34,17 @@ let firstCoice; // First card clicked
 //if player runs out of chances -> game over
   function initialize(){
     cards = shuffle();
-
-
-
+    firstCoice = null;
     render();
+}
 
-  }
+function render() {
+  cards.forEach(function(card, index) {
+    const imgEl = document.getElementById(index);
+    imgEl.src = card.img;
+});
+}
+
 // Shuffle cards 
   function shuffle() {
 let tempCards = [];
