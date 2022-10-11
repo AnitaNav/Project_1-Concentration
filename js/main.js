@@ -16,12 +16,14 @@ let secondChoice; // Second card
 let attempts = 0;
 let ignore;
 let winner;
+//const startAudio = new Audio('mp3/opening-8043.mp3');
+const matchAudio = new Audio('mp3/news-ting-6832.mp3');
 
 /*----- cached elements  -----*/
 const playButton = document.querySelector('button');
 const messageEl = document.querySelector('h1');
 const MessageChannel = document.querySelector('h3');
-
+const audio = document.querySelector('audio');
 
 /*----- event listeners -----*/
 document.querySelector('main').addEventListener('click', handleClick);
@@ -34,10 +36,13 @@ function initialize() {
   cards = shuffle();
   firstChoice = null;
   ignore = false;
+ // startAudio.play();
   render();
   attempts = 0;
+  
 
 }
+
 
 function render() {
   cards.forEach(function (card, index) {
@@ -76,7 +81,7 @@ function shuffle() {
 
 function handleClick(event) {
   const cardIndex = parseInt(event.target.id); // converting the string id to number
-  if (isNaN(cardIndex) || ignore || attempts === 10) return; // Gaurd
+  if (isNaN(cardIndex) || ignore || attempts === 15) return; // Gaurd
   const card = cards[cardIndex];
 
   // when both choices are set and a click is done outside of the cards
@@ -85,6 +90,8 @@ function handleClick(event) {
       if (firstChoice.img === secondChoice.img) {
         // correct match
         firstChoice.matched = secondChoice.matched = true;
+        matchAudio.play();
+
       }
 
       firstChoice = null;
@@ -101,6 +108,12 @@ function handleClick(event) {
         return;
       }
       secondChoice = card;
+      setInterval(function flipTimer() {
+        cards[0].matched = false;
+        cards[1].matched = false;
+        render();
+        cards = [];
+      }, 200);
       attempts++;
     }
   }
@@ -117,21 +130,19 @@ function handleClick(event) {
 // Winning logic
 function gameOver() {
 
-  console.log(attempts);
-  
-  if (cards.every(card => card.matched === true)) {
+  //console.log(attempts);
 
-    //console.log('we have a winner');
+  if (cards.every(card => card.matched === true)) {
+    //messageEl.innerText = "WE HAVE A NINJA";
 
   }
 
-  if (attempts >= 10) {
-    //console.log('attempts over');
-    messageEl.innerText = "Game Over."
+  if (attempts >= 15) {
+    messageEl.innerText = "GAME OVER";
     return;
   }
 
-render();
+  render();
 }
 
 
