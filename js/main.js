@@ -13,7 +13,7 @@ const CARD_BACK = 'https://images.squarespace-cdn.com/content/v1/5bbe8cab7eb88c0
 let cards; // Array of 12 cards
 let firstChoice; // First card clicked
 let secondChoice; // Second card
-let attempts;
+let attempts = 0;
 let ignore;
 let winner;
 
@@ -47,7 +47,6 @@ function render() {
   });
 
   MessageChannel.innerHTML = `Attempts : ${attempts}`;
-  
 
 
 }
@@ -77,7 +76,7 @@ function shuffle() {
 
 function handleClick(event) {
   const cardIndex = parseInt(event.target.id); // converting the string id to number
-  if (isNaN(cardIndex) || ignore) return; // Gaurd
+  if (isNaN(cardIndex) || ignore || attempts === 10) return; // Gaurd
   const card = cards[cardIndex];
 
   // when both choices are set and a click is done outside of the cards
@@ -118,21 +117,22 @@ function handleClick(event) {
 // Winning logic
 function gameOver() {
 
-  //console.log(attempts);
-
+  console.log(attempts);
+  
   if (cards.every(card => card.matched === true)) {
-    console.log('we have a winner');
+
+    //console.log('we have a winner');
 
   }
 
   if (attempts >= 10) {
-    console.log('attempts over');
+    //console.log('attempts over');
+    messageEl.innerText = "Game Over."
     return;
   }
 
-initialize();
+render();
 }
-
 
 
 
