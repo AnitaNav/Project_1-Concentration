@@ -39,7 +39,7 @@ header {
   text-align: center;
   flex-direction: column;
   position: absolute;
-  top : 8%;
+  top : 3%;
   right: 40%;
   justify-content: center;
   background-image: url("https://c.tenor.com/mSBwQxmbtoIAAAAC/fire.gif");
@@ -47,11 +47,30 @@ header {
   background-size: cover;
 }
 
+h1 {
+  font-family: fantasy;
+  font-size: 4vmin;
+  color: firebrick;
+  background-color: black;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  position: relative; 
+  top: 5%;
+}
+
+h3 {
+  font-family: fantasy;
+  font-size: 3vmin;
+  color: firebrick;
+  background-color: black;
+}
+
 button {
   display: flex;
   flex-direction: column;
   position: absolute;
-  bottom: 3%;
+  bottom: 1%;
   right: 50%;
   justify-content: center;
   border-radius: 20%;

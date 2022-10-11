@@ -19,6 +19,9 @@ let winner;
 
 /*----- cached elements  -----*/
 const playButton = document.querySelector('button');
+const messageEl = document.querySelector('h1');
+const MessageChannel = document.querySelector('h3');
+
 
 /*----- event listeners -----*/
 document.querySelector('main').addEventListener('click', handleClick);
@@ -26,14 +29,7 @@ playButton.addEventListener('click', initialize);
 
 /*----- functions -----*/
 initialize();
-// board should be intialized to start the game
-//player will be allowed to select two cards from the board
-// player should not be allowed to open more than two cards
-//cards are compared -> if matched cards stay open else flip back
-//the selected pair of cards should be stored temporarily in an element
-// board should be rendered back if cards are unmatched
-//if all cards are matched -> game over
-//if player runs out of chances -> game over
+
 function initialize() {
   cards = shuffle();
   firstChoice = null;
@@ -51,6 +47,7 @@ function render() {
   });
 
   MessageChannel.innerHTML = `Attempts : ${attempts}`;
+  
 
 
 }
@@ -118,13 +115,14 @@ function handleClick(event) {
   render();
 }
 
-// Finishing the game
+// Winning logic
 function gameOver() {
 
   //console.log(attempts);
 
   if (cards.every(card => card.matched === true)) {
     console.log('we have a winner');
+
   }
 
   if (attempts >= 10) {
@@ -132,7 +130,7 @@ function gameOver() {
     return;
   }
 
-
+initialize();
 }
 
 
