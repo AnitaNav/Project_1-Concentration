@@ -40,7 +40,7 @@ function initialize() {
   ignore = false;
   render();
   attempts = 0;
-  
+
 }
 
 function render() {
@@ -49,6 +49,7 @@ function render() {
     const src = (card.matched || card === firstChoice || card === secondChoice) ? card.img : CARD_BACK;
     imgEl.src = src;
   });
+
   MessageChannel.innerHTML = `Attempts : ${attempts}`;
 
 
@@ -81,26 +82,63 @@ function handleClick(event) {
   const cardIndex = parseInt(event.target.id); // converting the string id to number
   if (isNaN(cardIndex) || ignore) return; // Gaurd
   const card = cards[cardIndex];
+
+  // when both choices are set and a click is done outside of the cards
   if (firstChoice) {
     if (secondChoice) {
       if (firstChoice.img === secondChoice.img) {
         // correct match
         firstChoice.matched = secondChoice.matched = true;
       }
+
       firstChoice = null;
       secondChoice = null;
-    } else {
-      if ( 
-          isNaN(cardIndex) || 
-          ignore || 
-          cards[cardIndex] === firstChoice) return;
-        secondChoice = card;
-        attempts++;
     }
 
-  } else {
+
+    // setting second choice based on selection
+    else {
+      if (
+        isNaN(cardIndex) ||
+        ignore ||
+        cards[cardIndex] === firstChoice) {
+        return;
+      }
+      secondChoice = card;
+      attempts++;
+    }
+  }
+
+  // setting first choice based on selection
+  else {
     firstChoice = card;
   }
+
+  gameOver();
   render();
 }
+
+// Finishing the game
+function gameOver() {
+
+  //console.log(attempts);
+
+  if (cards.every(card => card.matched === true)) {
+    console.log('we have a winner');
+  }
+
+  if (attempts >= 10) {
+    console.log('attempts over');
+    return;
+  }
+
+
+}
+
+
+
+
+
+
+
 
