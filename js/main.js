@@ -73,7 +73,7 @@ function shuffle() {
     let card = tempCards.splice(rndIdx, 1)[0];
     cards.push(card);
   }
-  
+
   return cards;
 }
 
