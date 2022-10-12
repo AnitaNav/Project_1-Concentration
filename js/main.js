@@ -18,6 +18,7 @@ let ignore;
 let winner;
 //const startAudio = new Audio('mp3/opening-8043.mp3');
 const matchAudio = new Audio('mp3/news-ting-6832.mp3');
+const wrongAudio = new Audio('mp3/wrong-47985.mp3')
 const loseAudio = new Audio('mp3/evil-laugh-49831.mp3');
 
 /*----- cached elements  -----*/
@@ -40,7 +41,6 @@ function initialize() {
   cards = shuffle();
   firstChoice = null;
   ignore = false;
-  //startAudio.play();
   renderGamePage();
   attempts = 0;
 
@@ -104,6 +104,7 @@ function handleClick(event) {
       function setNull() {
         firstChoice = null;
         secondChoice = null;
+        wrongAudio.play();
         isGameOver();
       }
     }
