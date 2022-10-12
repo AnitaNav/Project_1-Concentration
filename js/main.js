@@ -17,13 +17,16 @@ let attempts = 0;
 let ignore;
 let winner;
 //const startAudio = new Audio('mp3/opening-8043.mp3');
-const matchAudio = new Audio('mp3/news-ting-6832.mp3');
+//const matchAudio = new Audio('mp3/news-ting-6832.mp3');
 
 /*----- cached elements  -----*/
 const playButton = document.querySelector('button');
 const messageEl = document.querySelector('h1');
 const MessageChannel = document.querySelector('h3');
-const audio = document.querySelector('audio');
+const modal = document.querySelector(".modal");
+const trigger = document.querySelector(".trigger");
+const closeButton = document.querySelector(".close-button");
+
 
 /*----- event listeners -----*/
 document.querySelector('main').addEventListener('click', handleClick);
@@ -36,7 +39,7 @@ function initialize() {
   cards = shuffle();
   firstChoice = null;
   ignore = false;
- // startAudio.play();
+  //startAudio.play();
   render();
   attempts = 0;
   
@@ -81,7 +84,7 @@ function shuffle() {
 
 function handleClick(event) {
   const cardIndex = parseInt(event.target.id); // converting the string id to number
-  if (isNaN(cardIndex) || ignore || attempts === 15) return; // Gaurd
+  if (isNaN(cardIndex) || ignore || attempts === 10) return; // Gaurd
   const card = cards[cardIndex];
 
   // when both choices are set and a click is done outside of the cards
@@ -90,7 +93,7 @@ function handleClick(event) {
       if (firstChoice.img === secondChoice.img) {
         // correct match
         firstChoice.matched = secondChoice.matched = true;
-        matchAudio.play();
+        //matchAudio.play();
 
       }
 
@@ -108,12 +111,12 @@ function handleClick(event) {
         return;
       }
       secondChoice = card;
-      setInterval(function flipTimer() {
-        cards[0].matched = false;
-        cards[1].matched = false;
-        render();
-        cards = [];
-      }, 200);
+      // setInterval(function flipTimer() {
+      //   cards[0].matched = false;
+      //   cards[1].matched = false;
+      //   render();
+      //   cards = [];
+      // }, 200);
       attempts++;
     }
   }
@@ -127,18 +130,23 @@ function handleClick(event) {
   render();
 }
 
+function toggleModal() {
+  modal.classList.toggle("show-modal");
+}
+trigger.addEventListener("click", toggleModal);
+closeButton.addEventListener("click", toggleModal);
+
+
 // Winning logic
 function gameOver() {
 
-  //console.log(attempts);
-
-  if (cards.every(card => card.matched === true)) {
-    //messageEl.innerText = "WE HAVE A NINJA";
+  if (cards.every(card => card.matched === true)) { 
+    messageEl.innerText = "WE HAVE A NINJA";
 
   }
 
-  if (attempts >= 15) {
-    messageEl.innerText = "GAME OVER";
+  if (attempts >= 10) {
+    toggleModal();
     return;
   }
 
