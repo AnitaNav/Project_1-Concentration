@@ -17,7 +17,8 @@ let attempts = 0;
 let ignore;
 let winner;
 //const startAudio = new Audio('mp3/opening-8043.mp3');
-//const matchAudio = new Audio('mp3/news-ting-6832.mp3');
+const matchAudio = new Audio('mp3/news-ting-6832.mp3');
+const loseAudio = new Audio('mp3/evil-laugh-49831.mp3');
 
 /*----- cached elements  -----*/
 const playButton = document.getElementById('reset');
@@ -95,6 +96,7 @@ function handleClick(event) {
     renderGamePage();
     if (firstChoice.img === secondChoice.img) {
       firstChoice.matched = secondChoice.matched = true;
+      matchAudio.play();
       isGameOver();
     }
     else {
@@ -128,6 +130,7 @@ function isGameOver() {
 
   if (attempts >= 10) {
     toggleModal();
+    loseAudio.play();
     return;
   }
 
