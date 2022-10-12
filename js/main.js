@@ -32,7 +32,7 @@ const closeButton = document.querySelector(".close-button");
 
 /*----- event listeners -----*/
 document.querySelector('main').addEventListener('click', handleClick);
-playButton.addEventListener('click', initialize);
+playButton.addEventListener('click', refresh);
 
 /*----- functions -----*/
 initialize();
@@ -83,7 +83,7 @@ function shuffle() {
 function handleClick(event) {
   const cardIndex = parseInt(event.target.id); // converting the string id to number
   console.log('attempts')
-  if (isNaN(cardIndex) || ignore || attempts === 10) return; // Guard
+  if (isNaN(cardIndex) || ignore || attempts === 20) return; // Guard
   const card = cards[cardIndex];
 
   if (!firstChoice) {
@@ -111,6 +111,10 @@ function handleClick(event) {
   }
 }
 
+// Refreshing board
+function refresh() {
+  window.location.reload();
+}
 
 // popup box
 function toggleModal() {
@@ -126,18 +130,13 @@ function isGameOver() {
   //console.log('card', cards);
   if (cards.every(card => card.matched === true)) {
     messageEl.innerText = "WE HAVE A NINJA";
-    //  console.log("winner");
-  }
-
-  if (attempts >= 10) {
+  } if  (attempts >= 20) { 
     toggleModal();
-    loseAudio.play();
-    return;
-  }
-
-  renderGamePage();
+  loseAudio.play();
+  return;
 }
-
+renderGamePage();
+}
 
 
 
