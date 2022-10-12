@@ -20,7 +20,7 @@ let winner;
 //const matchAudio = new Audio('mp3/news-ting-6832.mp3');
 
 /*----- cached elements  -----*/
-const playButton = document.querySelector('button');
+const playButton = document.getElementById('reset');
 const messageEl = document.querySelector('h1');
 const MessageChannel = document.querySelector('h3');
 const modal = document.querySelector(".modal");
@@ -82,7 +82,7 @@ function shuffle() {
 function handleClick(event) {
   const cardIndex = parseInt(event.target.id); // converting the string id to number
   console.log('attempts')
-  if (isNaN(cardIndex) || ignore || attempts === 2) return; // Guard
+  if (isNaN(cardIndex) || ignore || attempts === 10) return; // Guard
   const card = cards[cardIndex];
 
   if (!firstChoice) {
@@ -109,7 +109,7 @@ function handleClick(event) {
 }
 
 
-
+// popup box
 function toggleModal() {
   modal.classList.toggle("show-modal");
 }
@@ -120,13 +120,13 @@ closeButton.addEventListener("click", toggleModal);
 
 // Winning logic
 function isGameOver() {
-  console.log('card', cards);
+  //console.log('card', cards);
   if (cards.every(card => card.matched === true)) {
-    //   messageEl.innerText = "WE HAVE A NINJA";
+    messageEl.innerText = "WE HAVE A NINJA";
     //  console.log("winner");
   }
 
-  if (attempts >= 2) {
+  if (attempts >= 10) {
     toggleModal();
     return;
   }

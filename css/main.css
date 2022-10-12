@@ -59,11 +59,25 @@ h1 {
   top: 5%;
 }
 
+h2{
+  font-family: fantasy;
+  font-size: 3vmin;
+  text-align: center;
+  color: firebrick;
+}
+
 h3 {
   font-family: fantasy;
   font-size: 3vmin;
   color: firebrick;
   background-color: black;
+}
+
+h4{
+  font-family: fantasy;
+  font-size: 3vmin;
+  text-align: center;
+  color: firebrick;
 }
 
 button {
