@@ -40,14 +40,14 @@ function initialize() {
   firstChoice = null;
   ignore = false;
   //startAudio.play();
-  render();
+  renderGamePage();
   attempts = 0;
-  
+
 
 }
 
 
-function render() {
+function renderGamePage() {
   cards.forEach(function (card, index) {
     const imgEl = document.getElementById(index);
     const src = (card.matched || card === firstChoice || card === secondChoice) ? card.img : CARD_BACK;
@@ -68,90 +68,73 @@ function shuffle() {
     tempCards.push({ ...card }, { ...card });
   }
 
-  //console.log(tempCards);
   while (tempCards.length) {
     let rndIdx = Math.floor(Math.random() * tempCards.length);
     let card = tempCards.splice(rndIdx, 1)[0];
     cards.push(card);
-    //console.log(card);
   }
-
+  
   return cards;
-
 }
 
 // Placing gaurds and update state then call render
 
 function handleClick(event) {
   const cardIndex = parseInt(event.target.id); // converting the string id to number
-  if (isNaN(cardIndex) || ignore || attempts === 10) return; // Gaurd
+  console.log('attempts')
+  if (isNaN(cardIndex) || ignore || attempts === 2) return; // Guard
   const card = cards[cardIndex];
 
-  // when both choices are set and a click is done outside of the cards
-  if (firstChoice) {
-    if (secondChoice) {
-      if (firstChoice.img === secondChoice.img) {
-        // correct match
-        firstChoice.matched = secondChoice.matched = true;
-        //matchAudio.play();
-
-      }
-
-      firstChoice = null;
-      secondChoice = null;
-    }
-
-
-    // setting second choice based on selection
-    else {
-      if (
-        isNaN(cardIndex) ||
-        ignore ||
-        cards[cardIndex] === firstChoice) {
-        return;
-      }
-      secondChoice = card;
-      // setInterval(function flipTimer() {
-      //   cards[0].matched = false;
-      //   cards[1].matched = false;
-      //   render();
-      //   cards = [];
-      // }, 200);
-      attempts++;
-    }
-  }
-
-  // setting first choice based on selection
-  else {
+  if (!firstChoice) {
     firstChoice = card;
+    renderGamePage();
   }
-
-  gameOver();
-  render();
+  else {
+    attempts++;
+    secondChoice = card;
+    renderGamePage();
+    if (firstChoice.img === secondChoice.img) {
+      firstChoice.matched = secondChoice.matched = true;
+      isGameOver();
+    }
+    else {
+      const myTimeout = setTimeout(setNull, 1000);
+      function setNull() {
+        firstChoice = null;
+        secondChoice = null;
+        isGameOver();
+      }
+    }
+  }
 }
+
+
 
 function toggleModal() {
   modal.classList.toggle("show-modal");
 }
+
 trigger.addEventListener("click", toggleModal);
 closeButton.addEventListener("click", toggleModal);
 
 
 // Winning logic
-function gameOver() {
-
-  if (cards.every(card => card.matched === true)) { 
-    messageEl.innerText = "WE HAVE A NINJA";
-
+function isGameOver() {
+  console.log('card', cards);
+  if (cards.every(card => card.matched === true)) {
+    //   messageEl.innerText = "WE HAVE A NINJA";
+    //  console.log("winner");
   }
 
-  if (attempts >= 10) {
+  if (attempts >= 2) {
     toggleModal();
     return;
   }
 
-  render();
+  renderGamePage();
 }
+
+
 
 
 
