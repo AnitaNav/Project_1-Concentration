@@ -20,6 +20,7 @@ let winner;
 const matchAudio = new Audio('mp3/news-ting-6832.mp3');
 const wrongAudio = new Audio('mp3/wrong-47985.mp3')
 const loseAudio = new Audio('mp3/evil-laugh-49831.mp3');
+const winAudio = new Audio('mp3/lego-ninjago_c7CjaOw0.mp3');
 
 /*----- cached elements  -----*/
 const playButton = document.getElementById('reset');
@@ -83,12 +84,11 @@ function shuffle() {
 function handleClick(event) {
   const cardIndex = parseInt(event.target.id); // converting the string id to number
   console.log('attempts')
-  if (isNaN(cardIndex) || ignore || attempts === 10) return; // Guard
+  if (isNaN(cardIndex) || ignore || attempts === 15) return; // Guard
   const card = cards[cardIndex];
 
   if (!firstChoice) {
     firstChoice = card;
-    console.log('if1',firstChoice,secondChoice);
     renderGamePage();
   }
   else {
@@ -100,7 +100,6 @@ function handleClick(event) {
     secondChoice = card;
     renderGamePage();
     if (firstChoice.img === secondChoice.img) {
-      console.log('if2',firstChoice,secondChoice);
       firstChoice.matched = secondChoice.matched = true;
       firstChoice = null;
       secondChoice = null;
@@ -108,8 +107,7 @@ function handleClick(event) {
       isGameOver();
     }
     else {
-      console.log('if3',firstChoice,secondChoice);
-      const myTimeout = setTimeout(setNull, 1000);
+      const myTimeout = setTimeout(setNull, 1000); // setting timer for card flip
       function setNull() {
         firstChoice = null;
         secondChoice = null;
@@ -138,7 +136,8 @@ closeButton.addEventListener("click", toggleModal);
 function isGameOver() {
   if (cards.every(card => card.matched === true)) {
     messageEl.innerText = "WE HAVE A NINJA";
-  } if  (attempts >= 10) { 
+    winAudio.play();
+  } if  (attempts >= 15) { 
     toggleModal();
   loseAudio.play();
   return;
