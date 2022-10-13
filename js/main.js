@@ -91,10 +91,11 @@ function handleClick(event) {
     renderGamePage();
   }
   else {
-    if(isNaN(cardIndex) ||
-    ignore ||
-    cards[cardIndex] === firstChoice) {
-    return; }
+    if (isNaN(cardIndex) ||
+      ignore ||
+      cards[cardIndex] === firstChoice) {
+      return;
+    }
     attempts++;
     secondChoice = card;
     renderGamePage();
@@ -136,12 +137,12 @@ function isGameOver() {
   if (cards.every(card => card.matched === true)) {
     messageEl.innerText = "WE HAVE A NINJA";
     winAudio.play();
-  } if  (attempts >= 10) { 
+  } if (attempts >= 10) {
     toggleModal();
-  loseAudio.play();
-  return;
-}
-renderGamePage();
+    loseAudio.play();
+    return;
+  }
+  renderGamePage();
 }
 
 

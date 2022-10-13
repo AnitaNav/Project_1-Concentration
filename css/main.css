@@ -147,3 +147,28 @@ button {
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
 
+@media only screen and (min-width: 360px) and (max-width: 768px) {
+  main {
+    padding: 30px;
+    grid-template-columns: repeat(4, 10vmin);
+  grid-template-rows: repeat(3, 10vmin);
+  gap: 5vmin;
+  }
+
+  button {
+    padding: 10px;
+  }
+
+  header {
+    font-size: 5vmin;
+  }
+  img {
+    width: 90px;
+    height: 90px;
+}
+button {
+  height: 10%;
+  width: 10%;
+}
+
+}
