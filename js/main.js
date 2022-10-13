@@ -88,6 +88,7 @@ function handleClick(event) {
 
   if (!firstChoice) {
     firstChoice = card;
+    console.log('if1',firstChoice,secondChoice);
     renderGamePage();
   }
   else {
@@ -95,11 +96,15 @@ function handleClick(event) {
     secondChoice = card;
     renderGamePage();
     if (firstChoice.img === secondChoice.img) {
+      console.log('if2',firstChoice,secondChoice);
       firstChoice.matched = secondChoice.matched = true;
+      firstChoice = null;
+      secondChoice = null;
       matchAudio.play();
       isGameOver();
     }
     else {
+      console.log('if3',firstChoice,secondChoice);
       const myTimeout = setTimeout(setNull, 1000);
       function setNull() {
         firstChoice = null;
@@ -111,7 +116,7 @@ function handleClick(event) {
   }
 }
 
-// Refreshing board
+// Refreshing board with button
 function refresh() {
   window.location.reload();
 }
@@ -127,7 +132,6 @@ closeButton.addEventListener("click", toggleModal);
 
 // Winning logic
 function isGameOver() {
-  //console.log('card', cards);
   if (cards.every(card => card.matched === true)) {
     messageEl.innerText = "WE HAVE A NINJA";
   } if  (attempts >= 20) { 
