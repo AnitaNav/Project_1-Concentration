@@ -16,7 +16,6 @@ let secondChoice; // Second card
 let attempts = 0;
 let ignore;
 let winner;
-//const startAudio = new Audio('mp3/opening-8043.mp3');
 const matchAudio = new Audio('mp3/news-ting-6832.mp3');
 const wrongAudio = new Audio('mp3/wrong-47985.mp3')
 const loseAudio = new Audio('mp3/evil-laugh-49831.mp3');
