@@ -83,7 +83,7 @@ function shuffle() {
 function handleClick(event) {
   const cardIndex = parseInt(event.target.id); // converting the string id to number
   console.log('attempts')
-  if (isNaN(cardIndex) || ignore || attempts === 15) return; // Guard
+  if (isNaN(cardIndex) || ignore || attempts === 10) return; // Guard
   const card = cards[cardIndex];
 
   if (!firstChoice) {
@@ -136,7 +136,7 @@ function isGameOver() {
   if (cards.every(card => card.matched === true)) {
     messageEl.innerText = "WE HAVE A NINJA";
     winAudio.play();
-  } if  (attempts >= 15) { 
+  } if  (attempts >= 10) { 
     toggleModal();
   loseAudio.play();
   return;
