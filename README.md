@@ -8,3 +8,8 @@ The memory game or concentration is a popular card game enjoyed by children and 
 * JavaScript
 # To Play
 [Game Link](https://anitanav.github.io/Project_1-Concentration/)
+# Next Steps
+* Responsive web-design.
+* Increase the number of cards.
+* Include a timer.
+* Keep count of the matched cards.
