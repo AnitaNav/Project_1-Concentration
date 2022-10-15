@@ -55,7 +55,7 @@ function renderGamePage() {
     imgEl.src = src;
   });
 
-  MessageChannel.innerHTML = `Attempts : ${attempts}`;
+  MessageChannel.innerHTML = `Attempts : ${attempts}`; //a medium of communication between two parties through which they send and receive messages
 
 
 }
