@@ -23,8 +23,8 @@ main {
 }
 
 img {
-  width: 150px;
-  height: 200px;
+  width: 90px;
+  height: 100px;
   border-radius: 3vmin;
 }
 
@@ -86,17 +86,17 @@ button {
   flex-direction: column;
   position: absolute;
   bottom: 1%;
-  right: 50%;
+  right: 45%;
   justify-content: center;
   border-radius: 20%;
-  height: 4%;
-  width: 5%;
+  height: 7%;
+  width: 8%;
   background-color: gold;
   text-align: center;
   font-family: fantasy;
   font-style: oblique 40deg;
   color: firebrick;
-  font-size: 125%;
+  font-size: 100%;
 }
 
 .modal {
@@ -147,7 +147,7 @@ button {
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
 
-@media only screen and (min-width: 345px) and (max-width: 768px) {
+/* @media only screen and (min-width: 345px) and (max-width: 768px) {
   main {
     padding: 30px;
     grid-template-columns: repeat(4, 10vmin);
@@ -177,4 +177,4 @@ top: 0%;
 h3 {
 top: 1%
 }
-}
+} */
